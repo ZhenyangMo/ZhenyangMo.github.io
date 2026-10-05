@@ -6,7 +6,13 @@ licenselink: 'https://github.com/guangzhengli/hugo-theme-ladder/blob/master/LICE
 description: 'A fast, clean Hugo theme'
 homepage: 'https://ZhenyangMo.github.io'
 defaultContentLanguage: 'zh'
-googleAnalytics: G-xxx
+
+
+services:
+  googleAnalytics:
+    id: G-DM69QBBPCM
+
+
 paginate: 10
 
 
