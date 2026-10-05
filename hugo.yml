@@ -27,14 +27,14 @@ params:
   #darkModeTheme: icy-dark-mode
   comments:
     giscus:
-      enable: false
-      repo: username/repo
-      repo_id: xxx
+      enable: true
+      repo: ZhenyangMo/ZhenyangMo.github.io
+      repo_id: R_kgDOU7Jq_g
       category: Announcements
-      category_id: xxx
+      category_id: DIC_kwDOU7Jq_s4DHDtp
       mapping: pathname
       position: top
-      lang: en # pick a language from https://github.com/giscus/giscus/tree/main/locales
+      lang: zh-CN # pick a language from https://github.com/giscus/giscus/tree/main/locales
     utteranc:
       enable: false
       repo: username/xxx
