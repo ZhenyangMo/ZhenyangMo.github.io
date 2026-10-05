@@ -53,8 +53,8 @@ params:
       website_id: xxx
       url: https://xxx
   guestbook:
-    title: Guestbook
-    description: Leave a comment below. It could be anything –- question, appreciation, information, or even humor.
+    title: 留言板
+    description: 您的评论，会让这个网站更加精彩！
   social:
     - name: GitHub
       pre: >-
