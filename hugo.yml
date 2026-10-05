@@ -17,7 +17,7 @@ paginate: 10
 
 
 params:
-  brand: HOME
+  brand: Zhenyang
   avatarURL: /images/avatar.png
 
   author: Zhenyang Mo
