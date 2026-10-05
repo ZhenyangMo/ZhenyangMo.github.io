@@ -3,9 +3,10 @@ title: 'Zhenyang Mo的博客'
 theme: hugo-theme-ladder
 license: MIT
 licenselink: 'https://github.com/guangzhengli/hugo-theme-ladder/blob/master/LICENSE'
-description: 'A fast, clean Hugo theme'
+description: 'Zhenyang Mo 的个人博客，记录阅读、思考与学习。'
 homepage: 'https://ZhenyangMo.github.io'
 defaultContentLanguage: 'zh'
+locale: 'zh-CN'
 
 
 services:
@@ -64,51 +65,23 @@ params:
     #  pre: >-
     #    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
     #  url: 'https://xxx'
-languages:
-  en:
-    label: EN
-    menu:
-      main:
-        - name: Blog
-          url: /blog
-          weight: 1
-        - name: Tags
-          url: /tags
-          weight: 2
-        - name: Archive
-          url: /archives
-          weight: 3
-        - name: Guestbook
-          url: /guestbook
-          weight: 4
-        #- name: Dashboard
-        #  url: https://xxx
-        #  weight: 5
-  zh:
-    label: 中
-    author: Zhenyang Mo
-    authorDescription: 阅读与思考，真理与自由
-    info: 持续学习，更新思想
-    guestbook:
-      title: 留言板
-      description: 您的评论，会让该网站更精彩！
-    menu:
-      main:
-        - name: 文章
-          url: /blog
-          weight: 1
-        - name: 分类
-          url: /tags
-          weight: 2
-        - name: 历史文章
-          url: /archives
-          weight: 3
-        - name: 留言板
-          url: /guestbook
-          weight: 4
-        #- name: 网站统计
-        #  url: https://xxx
-        #  weight: 5
+
+menu:
+  main:
+    - name: 文章
+      url: /blog/
+      weight: 1
+    - name: 分类
+      url: /tags/
+      weight: 2
+    - name: 历史文章
+      url: /archives/
+      weight: 3
+    - name: 留言板
+      url: /guestbook/
+      weight: 4
+
+
 taxonomies:
   series: series
   tag: tags
