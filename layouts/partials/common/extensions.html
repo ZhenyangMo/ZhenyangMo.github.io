@@ -1,0 +1,16 @@
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/twitter_cards.html" . }}
+{{- template "partials/common/schema.html" . }}
+
+{{- /* Load component styles once in the head, without render-time Store flags.
+     A summary can render shortcodes before the article body does. */ -}}
+{{- range slice
+  (dict "shortcode" "incident-chat" "path" "css/incident-chat.css")
+  (dict "shortcode" "resource-index" "path" "css/resource-index.css")
+  (dict "shortcode" "sdlc-figure" "path" "css/sdlc-figures.css")
+-}}
+  {{- if $.HasShortcode .shortcode -}}
+    {{- $style := resources.Get .path | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+  {{- end -}}
+{{- end -}}

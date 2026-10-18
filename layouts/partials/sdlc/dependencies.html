@@ -1,0 +1,85 @@
+{{- $id := .id -}}
+{{- $nodes := slice
+  (dict "key" "intent" "label" "捕获意图" "x" 30 "y" 115 "entry" true)
+  (dict "key" "requirements" "label" "需求与设计" "x" 226 "y" 115)
+  (dict "key" "skills" "label" "Skills 技能" "x" 422 "y" 115)
+  (dict "key" "claude" "label" "CLAUDE.md" "x" 422 "y" 227 "entry" true)
+  (dict "key" "subagents" "label" "子智能体" "x" 422 "y" 339)
+  (dict "key" "plan" "label" "规划模式" "x" 422 "y" 451 "entry" true)
+  (dict "key" "evals" "label" "持续评估" "x" 618 "y" 227)
+  (dict "key" "feedback" "label" "反馈闭环" "x" 618 "y" 339 "entry" true)
+  (dict "key" "review" "label" "PR 审查" "x" 814 "y" 115)
+  (dict "key" "cicd" "label" "CI/CD" "x" 814 "y" 227)
+  (dict "key" "hooks" "label" "Hooks 审批" "x" 814 "y" 339 "entry" true)
+  (dict "key" "closing" "label" "形成闭环" "x" 1010 "y" 227)
+-}}
+{{- $edges := slice
+  (dict "from" "intent" "to" "requirements" "path" "M190 142 H222")
+  (dict "from" "intent" "to" "closing" "path" "M110 115 Q110 85 155 85 H1095 Q1140 85 1140 130 V223")
+  (dict "from" "claude" "to" "skills" "path" "M502 227 V173")
+  (dict "from" "skills" "to" "requirements" "path" "M422 142 H390")
+  (dict "from" "claude" "to" "subagents" "path" "M502 281 V335")
+  (dict "from" "claude" "to" "evals" "path" "M582 254 H614")
+  (dict "from" "feedback" "to" "evals" "path" "M698 339 V285")
+  (dict "from" "claude" "to" "review" "path" "M582 240 C650 225 740 183 810 154")
+  (dict "from" "review" "to" "cicd" "path" "M894 169 V223")
+  (dict "from" "review" "to" "closing" "path" "M974 142 C1040 115 1110 165 1126 223")
+  (dict "from" "cicd" "to" "closing" "path" "M974 254 H1006")
+  (dict "from" "hooks" "to" "cicd" "path" "M894 339 V285")
+  (dict "from" "hooks" "to" "closing" "path" "M974 366 C1030 356 1070 325 1090 285")
+  (dict "from" "requirements" "to" "plan" "path" "M306 169 C306 340 330 478 418 478" "optional" true)
+  (dict "from" "claude" "to" "plan" "path" "M422 270 C380 300 380 430 445 447" "optional" true)
+  (dict "from" "skills" "to" "review" "path" "M582 126 C650 110 740 110 810 126" "optional" true)
+  (dict "from" "feedback" "to" "subagents" "path" "M618 366 H586" "optional" true)
+-}}
+<div class="sdlc-figure__panel">
+  <p class="sdlc-figure__hint">左右滑动查看六个阶段；橙色节点可直接起步，实线表示前置依赖，虚线表示辅助关系。</p>
+  <div class="sdlc-figure__scroll" role="region" aria-label="实战剧本依赖关系图，可左右滚动" tabindex="0">
+    <svg class="sdlc-dependencies" viewBox="0 0 1200 550" role="img" aria-labelledby="{{ $id }}-dependencies-title {{ $id }}-dependencies-desc">
+      <title id="{{ $id }}-dependencies-title">实战剧本依赖关系图</title>
+      <desc id="{{ $id }}-dependencies-desc">按规划、设计、构建、测试、部署、维护分成六列，共十二项剧本。五个橙色节点可直接起步。实线与虚线的逐项关系见图下的文字清单。</desc>
+      <defs>
+        <marker id="{{ $id }}-required" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 10 5 0 10Z" class="sdlc-dependencies__arrowhead"/></marker>
+        <marker id="{{ $id }}-optional" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 10 5 0 10Z" class="sdlc-dependencies__arrowhead--optional"/></marker>
+      </defs>
+      {{ range $i, $name := slice "规划" "设计" "构建" "测试" "部署" "维护" }}
+        <rect x="{{ add 20 (mul $i 196) }}" y="70" width="180" height="450" rx="12" class="sdlc-dependencies__lane"/>
+        <text x="{{ add 110 (mul $i 196) }}" y="43" class="sdlc-dependencies__stage">{{ $name }}</text>
+      {{ end }}
+      {{ range $edges }}
+        <path d="{{ .path }}" class="sdlc-dependencies__edge{{ if .optional }} sdlc-dependencies__edge--optional{{ end }}" marker-end="url(#{{ $id }}-{{ if .optional }}optional{{ else }}required{{ end }})" data-from="{{ .from }}" data-to="{{ .to }}"/>
+      {{ end }}
+      {{ range $nodes }}
+        <g class="sdlc-dependencies__node{{ if .entry }} sdlc-dependencies__node--entry{{ end }}" data-node="{{ .key }}">
+          <rect x="{{ .x }}" y="{{ .y }}" width="160" height="54" rx="9"/>
+          <text x="{{ add .x 80 }}" y="{{ add .y 27 }}">{{ .label }}</text>
+        </g>
+      {{ end }}
+    </svg>
+  </div>
+  <div class="sdlc-dependencies__legend" aria-label="图例">
+    <span><i class="sdlc-dependencies__swatch" aria-hidden="true"></i>可直接起步</span>
+    <span><i class="sdlc-dependencies__line" aria-hidden="true"></i>先做 A，再做 B</span>
+    <span><i class="sdlc-dependencies__line sdlc-dependencies__line--optional" aria-hidden="true"></i>有帮助，非必需</span>
+  </div>
+  <details class="sdlc-dependencies__text">
+    <summary>按文字查看起点与全部依赖关系</summary>
+    <p><strong>可直接起步：</strong>捕获意图、CLAUDE.md、规划模式、反馈闭环、Hooks 审批。</p>
+    <div class="sdlc-dependencies__lists">
+      {{ range $optional := slice false true }}
+        <section>
+          <p><strong>{{ if $optional }}辅助关系：有帮助，但非必需{{ else }}前置依赖：先完成左侧，再引入右侧{{ end }}</strong></p>
+          <ul>
+            {{ range $edges }}
+              {{ if eq (default false .optional) $optional }}
+                {{ $from := index (where $nodes "key" .from) 0 }}
+                {{ $to := index (where $nodes "key" .to) 0 }}
+                <li>{{ $from.label }} → {{ $to.label }}</li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
+    </div>
+  </details>
+</div>

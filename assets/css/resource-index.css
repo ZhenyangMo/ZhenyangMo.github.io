@@ -1,0 +1,129 @@
+.resource-index {
+  --resource-border: #deddd7;
+  --resource-muted: #716e66;
+  --resource-accent: #b34c30;
+  margin: 2.4rem 0 3.2rem;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.75;
+}
+
+[data-dark-mode] .resource-index,
+[icy-dark-mode] .resource-index {
+  --resource-border: #46433e;
+  --resource-muted: #b7b2a9;
+  --resource-accent: #f29d80;
+}
+
+.resource-index__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3.2rem;
+}
+
+.resource-index__column {
+  min-width: 0;
+}
+
+.resource-index .resource-index__group-title {
+  margin: 0 0 1.5rem;
+  color: var(--resource-accent);
+  font-size: .9em;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: .05em;
+}
+
+.resource-index__links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resource-index__links li {
+  margin: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--resource-border);
+}
+
+.resource-index__links li:last-child {
+  border-bottom: 1px solid var(--resource-border);
+}
+
+.resource-index__links li > p {
+  margin: .5rem 0 0;
+  color: var(--resource-muted);
+  font-size: .88em;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.resource-index__links li > p:first-child {
+  margin-top: 0;
+  color: inherit;
+  font-size: 1em;
+}
+
+.resource-index .resource-index__links a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .1rem 0;
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.55;
+  text-decoration: none;
+  box-shadow: none;
+  overflow-wrap: anywhere;
+}
+
+.resource-index__links a::after {
+  flex: 0 0 auto;
+  color: var(--resource-accent);
+  content: "↗";
+  font-family: system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.resource-index .resource-index__links a:hover {
+  color: var(--resource-accent);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.resource-index__links a:focus-visible {
+  outline: 2px solid var(--resource-accent);
+  outline-offset: 4px;
+  border-radius: .3rem;
+}
+
+.resource-index__acknowledgment {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--resource-border);
+}
+
+.resource-index .resource-index__acknowledgment-label {
+  margin: 0 0 .8rem;
+  color: var(--resource-muted);
+  font-size: .85em;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+.resource-index__acknowledgment p:last-child {
+  margin: 0;
+  font-size: .95em;
+}
+
+@media (max-width: 640px) {
+  .resource-index__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.4rem;
+  }
+
+  .resource-index__links li {
+    padding: 1.3rem 0;
+  }
+}

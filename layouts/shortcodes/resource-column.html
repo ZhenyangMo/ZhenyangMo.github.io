@@ -1,0 +1,12 @@
+{{- if not .Parent -}}
+  {{- errorf "resource-column 必须放在 resource-index 内：%s" .Position -}}
+{{- else if ne .Parent.Name "resource-index" -}}
+  {{- errorf "resource-column 必须放在 resource-index 内：%s" .Position -}}
+{{- end -}}
+{{- $id := printf "resource-group-%d-%d" .Parent.Ordinal .Ordinal -}}
+<section class="resource-index__column" aria-labelledby="{{ $id }}">
+  <h3 class="resource-index__group-title" id="{{ $id }}">{{ .Get "title" | default "参考资料" }}</h3>
+  <div class="resource-index__links">
+    {{ .Page.RenderString (dict "display" "block") .Inner }}
+  </div>
+</section>

@@ -1,0 +1,37 @@
+{{- $stages := slice "规划" "设计" "构建" "测试" "部署" "维护" -}}
+<div class="sdlc-loop">
+  <section class="sdlc-loop__linear sdlc-figure__panel" aria-label="传统模式：线性流转">
+    <p class="sdlc-loop__eyebrow">传统模式</p>
+    <p class="sdlc-loop__title">阶段逐一交接</p>
+    <ol class="sdlc-loop__steps">
+      {{ range $stages }}<li>{{ . }}</li>{{ end }}
+    </ol>
+    <p class="sdlc-loop__note">较慢的一轮反馈，往往要等到下一轮发布。</p>
+  </section>
+  <section class="sdlc-loop__cycle sdlc-figure__panel" aria-label="AI 原生模式：持续闭环">
+    <p class="sdlc-loop__eyebrow">AI 原生模式</p>
+    <p class="sdlc-loop__title">反馈持续进入下一轮</p>
+    <p class="sdlc-loop__human">人类负责发起、引导与治理</p>
+    <svg class="sdlc-loop__svg" viewBox="0 0 360 360" role="img" aria-labelledby="{{ .id }}-loop-title {{ .id }}-loop-desc">
+      <title id="{{ .id }}-loop-title">以 Claude 为中心的软件开发闭环</title>
+      <desc id="{{ .id }}-loop-desc">规划、设计、构建、测试、部署、维护依次衔接，维护中的发现再次进入规划。人类始终负责引导与把关。</desc>
+      <defs><marker id="{{ .id }}-cycle-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 8 4 0 8Z" class="sdlc-loop__arrowhead"/></marker></defs>
+      <circle cx="180" cy="180" r="144" class="sdlc-loop__orbit"/>
+      <g class="sdlc-loop__arrows" marker-end="url(#{{ .id }}-cycle-arrow)">
+        <path d="M222.3 42.3 A144 144 0 0 1 278.2 74.7"/>
+        <path d="M320.5 148 A144 144 0 0 1 320.5 212"/>
+        <path d="M278.2 285.3 A144 144 0 0 1 222.3 317.7"/>
+        <path d="M137.7 317.7 A144 144 0 0 1 81.8 285.3"/>
+        <path d="M39.5 212 A144 144 0 0 1 39.5 148"/>
+        <path d="M81.8 74.7 A144 144 0 0 1 137.7 42.3"/>
+      </g>
+      <circle cx="180" cy="180" r="61" class="sdlc-loop__core"/>
+      <text x="180" y="183" class="sdlc-loop__core-label">Claude</text>
+      {{ range slice (dict "x" 180 "y" 36 "label" "规划") (dict "x" 304 "y" 108 "label" "设计") (dict "x" 304 "y" 252 "label" "构建") (dict "x" 180 "y" 324 "label" "测试") (dict "x" 56 "y" 252 "label" "部署") (dict "x" 56 "y" 108 "label" "维护") }}
+        <circle cx="{{ .x }}" cy="{{ .y }}" r="35" class="sdlc-loop__node"/>
+        <text x="{{ .x }}" y="{{ .y }}" class="sdlc-loop__node-label">{{ .label }}</text>
+      {{ end }}
+    </svg>
+    <p class="sdlc-loop__note">维护不是终点，而是下一轮规划的输入。</p>
+  </section>
+</div>

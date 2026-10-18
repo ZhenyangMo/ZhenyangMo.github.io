@@ -1,0 +1,96 @@
+<style>
+.article-sidebar {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 2fr);
+    gap: 2.4rem;
+    margin: 2rem 0;
+    padding: 2.4rem;
+    color: #eee;
+    background: #151515;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.article-sidebar__left {
+    border-top: 4px solid #ef765d;
+    padding-top: 1rem;
+}
+
+.article-sidebar__label {
+    margin-bottom: 1.2rem;
+    color: #ef765d;
+    font-size: 0.75em;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.article-sidebar__title {
+    margin: 0 0 1.5rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.article-sidebar__note {
+    margin: 0;
+    color: #b5b1a8;
+    font-size: 0.85em;
+    line-height: 1.7;
+}
+
+.article-sidebar__content {
+    min-width: 0;
+    color: #ddd;
+    font-size: 1em;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.article-sidebar__content p:first-child {
+    margin-top: 0;
+}
+
+.article-sidebar__content p:last-child {
+    margin-bottom: 0;
+}
+
+.article-sidebar__content strong {
+    color: #fff;
+}
+
+.article-sidebar__content code {
+    font-size: 0.9em;
+}
+
+@media (max-width: 700px) {
+    .article-sidebar {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+}
+</style>
+
+<aside class="article-sidebar">
+    <div class="article-sidebar__left">
+        <div class="article-sidebar__label">
+            {{ .Get "label" }}
+        </div>
+
+        <h3 class="article-sidebar__title">
+            {{ .Get "title" }}
+        </h3>
+
+        {{ with .Get "note" }}
+        <p class="article-sidebar__note">
+            {{ . }}
+        </p>
+        {{ end }}
+    </div>
+
+    <div class="article-sidebar__content">
+        {{ .Inner | markdownify }}
+    </div>
+</aside>

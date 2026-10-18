@@ -1,0 +1,11 @@
+<div class="resource-index">
+  <div class="resource-index__columns">
+    {{ .Inner }}
+  </div>
+  {{ with .Get "acknowledgment" }}
+    <aside class="resource-index__acknowledgment" aria-label="原文致谢">
+      <p class="resource-index__acknowledgment-label">原文致谢</p>
+      <p>{{ . }}</p>
+    </aside>
+  {{ end }}
+</div>

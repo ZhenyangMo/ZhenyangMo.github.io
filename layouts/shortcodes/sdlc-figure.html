@@ -1,0 +1,12 @@
+{{- $kind := .Get "kind" -}}
+{{- if not (in (slice "bottleneck" "loop" "dependencies" "audit") $kind) -}}
+  {{- errorf "未知的 SDLC 图解类型 %q：%s" $kind .Position -}}
+{{- end -}}
+<figure class="sdlc-figure sdlc-figure--{{ $kind }}" id="{{ .Get "anchor" | default (printf "sdlc-figure-%d" .Ordinal) }}">
+  <figcaption class="sdlc-figure__heading">
+    {{ with .Get "label" }}<span class="sdlc-figure__label">{{ . }}</span>{{ end }}
+    <span class="sdlc-figure__title">{{ .Get "title" }}</span>
+  </figcaption>
+  {{ partial (printf "sdlc/%s.html" $kind) (dict "id" (printf "sdlc-%d" .Ordinal)) }}
+  {{ with .Get "caption" }}<p class="sdlc-figure__caption">{{ . }}</p>{{ end }}
+</figure>

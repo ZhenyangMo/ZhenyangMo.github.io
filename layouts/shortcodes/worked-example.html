@@ -1,0 +1,92 @@
+<style>
+.worked-example {
+    margin: 2rem 0;
+    padding: 2.4rem;
+    color: #e8e5df;
+    background: #151515;
+    border-radius: 12px;
+    font-family: inherit;
+}
+
+.worked-example__label {
+    margin-bottom: 1rem;
+    color: #ef765d;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.worked-example__title {
+    margin: 0 0 1rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 2.1rem;
+    line-height: 1.4;
+}
+
+.worked-example__content {
+    color: #dedbd4;
+    font-family: inherit;
+    font-size: 1.8rem;
+    line-height: 1.7;
+}
+
+.worked-example__content p {
+    margin: 0 0 1rem;
+}
+
+.worked-example__content .highlight {
+    margin: 1.25rem 0 0;
+    overflow: hidden;
+    border-radius: 9px;
+}
+
+.worked-example__content pre {
+    margin: 0;
+    padding: 1.4rem;
+    overflow-x: auto;
+    color: #eee;
+    background: #292927 !important;
+    border: 0;
+}
+
+.worked-example__content code {
+    font-size: 1.5rem;
+    line-height: 2.35rem;
+}
+
+@media (max-width: 700px) {
+    .worked-example {
+        padding: 1.8rem;
+    }
+
+    .worked-example__title {
+        font-size: 2rem;
+    }
+
+    .worked-example__content {
+        font-size: 1.6rem;
+    }
+
+    .worked-example__content code {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+    }
+}
+</style>
+
+<aside class="worked-example">
+    <div class="worked-example__label">
+        {{ .Get "label" }}
+    </div>
+
+    <h3 class="worked-example__title">
+        {{ .Get "title" }}
+    </h3>
+
+    <div class="worked-example__content">
+        {{ .Inner | markdownify }}
+    </div>
+</aside>

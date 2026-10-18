@@ -1,0 +1,19 @@
+<div class="sdlc-figure__panel">
+  <p class="sdlc-figure__hint">横向示意图可左右滑动；橙色代表构建阶段，长度仅表达相对变化。</p>
+  <div class="sdlc-figure__scroll" role="region" aria-label="引入智能体前后的阶段耗时对比" tabindex="0">
+    <div class="sdlc-bottleneck">
+      <p class="sdlc-bottleneck__label"><strong>引入智能体之前</strong><span>各阶段都以人工速度运行</span></p>
+      <div class="sdlc-bottleneck__row sdlc-bottleneck__row--before">
+        <span>规划</span><span>设计</span><span class="sdlc-bottleneck__build">构建</span><span>测试</span><span>部署</span><span>维护</span>
+      </div>
+      <p class="sdlc-bottleneck__label"><strong>引入智能体之后</strong><span>构建加速，其他环节成为新的瓶颈</span></p>
+      <div class="sdlc-bottleneck__row sdlc-bottleneck__row--after">
+        <span>规划</span><span>设计</span><span class="sdlc-bottleneck__build sdlc-bottleneck__fast" aria-label="构建阶段大幅缩短"></span><span>测试</span><span>部署</span><span>维护</span><span class="sdlc-bottleneck__reclaimed">释放的周期时间</span>
+      </div>
+      <div class="sdlc-bottleneck__annotations" aria-label="新的瓶颈位置">
+        <span>需求与澄清</span><span>审查</span><span>发布</span>
+      </div>
+    </div>
+  </div>
+  <p class="sdlc-figure__takeaway">构建变快了，需求、审查与发布的节奏也需要跟上。</p>
+</div>

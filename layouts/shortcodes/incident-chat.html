@@ -1,0 +1,16 @@
+<figure class="incident-chat">
+  <figcaption class="incident-chat__heading">
+    {{ with .Get "label" }}<span class="incident-chat__label">{{ . }}</span>{{ end }}
+    <span class="incident-chat__title">{{ .Get "title" | default "对话示例" }}</span>
+  </figcaption>
+  <div class="incident-chat__panel">
+    <div class="incident-chat__channel">
+      <span class="incident-chat__channel-name">{{ .Get "channel" | default "#incident" }}</span>
+      {{ with .Get "description" }}<span class="incident-chat__description">{{ . }}</span>{{ end }}
+    </div>
+    <ol class="incident-chat__messages" aria-label="对话记录">
+      {{ .Inner }}
+    </ol>
+  </div>
+  {{ with .Get "caption" }}<p class="incident-chat__caption">{{ . }}</p>{{ end }}
+</figure>

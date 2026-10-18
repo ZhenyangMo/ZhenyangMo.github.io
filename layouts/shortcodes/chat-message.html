@@ -1,0 +1,18 @@
+{{- if not .Parent -}}
+  {{- errorf "chat-message 必须放在 incident-chat 内：%s" .Position -}}
+{{- else if ne .Parent.Name "incident-chat" -}}
+  {{- errorf "chat-message 必须放在 incident-chat 内：%s" .Position -}}
+{{- end -}}
+{{- $assistant := eq (.Get "role") "assistant" -}}
+<li class="incident-chat__message{{ if $assistant }} incident-chat__message--assistant{{ end }}">
+  <span class="incident-chat__avatar" aria-hidden="true">{{ if $assistant }}✳{{ else }}{{ .Get "avatar" | default "人" }}{{ end }}</span>
+  <div class="incident-chat__message-main">
+    <div class="incident-chat__meta">
+      <span class="incident-chat__author">{{ .Get "author" | default "成员" }}</span>
+      {{ with .Get "time" }}<time class="incident-chat__time" datetime="{{ . }}">{{ . }}</time>{{ end }}
+    </div>
+    <div class="incident-chat__message-body">
+      {{ .Page.RenderString (dict "display" "block") .Inner }}
+    </div>
+  </div>
+</li>
