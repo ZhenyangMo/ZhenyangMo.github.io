@@ -2,6 +2,10 @@
 {{ template "_internal/twitter_cards.html" . }}
 {{- template "partials/common/schema.html" . }}
 
+{{- /* Article-only selectors keep these overrides separate from the theme. */ -}}
+{{- $articleStyle := resources.Get "css/article-responsive.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $articleStyle.RelPermalink }}" integrity="{{ $articleStyle.Data.Integrity }}">
+
 {{- /* Load component styles once in the head, without render-time Store flags.
      A summary can render shortcodes before the article body does. */ -}}
 {{- range slice

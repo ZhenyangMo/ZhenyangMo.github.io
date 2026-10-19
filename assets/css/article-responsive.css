@@ -1,0 +1,58 @@
+/* Small-screen reading overrides. Desktop code blocks retain horizontal scroll. */
+@media (max-width: 768px) {
+  /* Break long URLs and file paths without inserting characters into the text. */
+  .blog-content p,
+  .blog-content li,
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4,
+  .blog-content h5,
+  .blog-content h6,
+  .blog-content a {
+    overflow-wrap: anywhere;
+  }
+
+  .blog-content :not(pre) > code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  /* Preserve indentation and source newlines, but allow visual soft wrapping. */
+  .blog-content pre,
+  .blog-content .highlight pre,
+  .blog-content .worked-example__content pre {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    padding: 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .blog-content pre code {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: inherit;
+    overflow-wrap: inherit;
+    word-break: normal;
+  }
+
+  /* Hugo/Chroma renders each line as flex; let its content shrink and wrap. */
+  .blog-content .highlight pre code > span > span {
+    min-width: 0;
+  }
+
+  /* Wide tables stay scrollable within their own box, not the whole page. */
+  .blog-content table {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
