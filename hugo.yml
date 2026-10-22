@@ -1,10 +1,10 @@
-baseURL: 'https://ZhenyangMo.github.io'
+baseURL: 'https://zhenyangmo.github.io'
 title: 'Zhenyang Mo的博客'
 theme: hugo-theme-ladder
 license: MIT
 licenselink: 'https://github.com/guangzhengli/hugo-theme-ladder/blob/master/LICENSE'
 description: 'Zhenyang Mo 的个人博客，记录阅读、思考与学习。'
-homepage: 'https://ZhenyangMo.github.io'
+homepage: 'https://zhenyangmo.github.io'
 defaultContentLanguage: 'zh'
 locale: 'zh-CN'
 
